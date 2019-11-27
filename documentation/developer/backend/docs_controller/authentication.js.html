@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: authentication.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: authentication.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file Used for authentication of user 
+ * @author Soumyadeep Thakur
+ */
+
+var passport = require('passport');
+var mongoose = require('mongoose');
+var User = require('../models/user');
+
+
+/**
+ * Sends JSON response for user registration
+ * @param {String} res response from server
+ * @param {String} status status of response
+ * @param {String} content JSON content
+ */
+var sendJSONresponse = function(res, status, content) {
+  res.status(status);
+  res.json(content);
+};
+
+
+module.exports.register = function(req, res) {
+
+  // if(!req.body.name || !req.body.email || !req.body.password) {
+  //   sendJSONresponse(res, 400, {
+  //     "message": "All fields required"
+  //   });
+  //   return;
+  // }
+
+  var user = new User();
+
+  user.uname = req.body.uname;
+  user.phone = req.body.phone;
+  user.gender = req.body.gender;
+
+  user.setPassword(req.body.pass);
+
+  user.save(function(err) {
+    var token;
+    token = user.generateJwt();
+    res.status(200);
+    res.json({
+      "token" : token
+    });
+  });
+
+};
+
+module.exports.login = function(req, res) {
+
+  // if(!req.body.email || !req.body.password) {
+  //   sendJSONresponse(res, 400, {
+  //     "message": "All fields required"
+  //   });
+  //   return;
+  // }
+  console.log('hei'+req.body.uname+req.body.pass);
+  var uname = req.body.uname;
+  var newpass = req.body.pass;
+  User.findOne({ 'uname': uname }, 'uname pass salt', function (err, user) 
+  {
+    console.log(JSON.stringify(user));
+    if (err)
+    {
+      res.status(404).json(err);
+      return;
+    }
+    if(user)
+    {
+      userobj = new User()
+      userobj.uname = user.uname;
+      userobj.pass = user.pass;
+      userobj.salt = user.salt;
+      if (userobj.validPassword(newpass))
+      {
+        token = user.generateJwt();
+        res.status(200);
+        res.json({"token" : token});
+      }
+      else
+      {
+        console.log('Get lost');
+        res.status(401).json({"message": "Incorrect username or password"});
+      }
+    }
+    else
+    {
+      console.log('You prick');
+      res.status(401).json({"message": "Incorrect username or password"});
+    }
+  });
+  /*
+  passport.authenticate('local', function(err, user, info){
+    var token;
+
+    // If Passport throws/catches an error
+    if (err) {
+      res.status(404).json(err);
+      return;
+    }
+
+    // If a user is found
+    if(user){
+      token = user.generateJwt();
+      res.status(200);
+      res.json({
+        "token" : token
+      });
+    } else {
+      // If user is not found
+      res.status(401).json(info);
+    }
+  })(req, res);
+*/
+};
+
+
+
+
+
+
+/**
+ * Used for user registration in backend
+ * @param {String} req request to server
+ * @param {String} res response from server
+ */
+function register(req, res) {
+
+
+  var user = new User();
+
+  user.uname = req.body.uname;
+  user.phone = req.body.phone;
+  user.gender = req.body.gender;
+
+  user.setPassword(req.body.pass);
+
+  user.save(function(err) {
+    var token;
+    token = user.generateJwt();
+    res.status(200);
+    res.json({
+      "token" : token
+    });
+  });
+
+}
+
+
+
+
+/**
+ * Used for user login by verifying username and cryptographically salted password
+ * @param {*} req request to server
+ * @param {*} res response from server
+ */
+function login(req, res) {
+
+  console.log('hei'+req.body.uname+req.body.pass);
+  var uname = req.body.uname;
+  var newpass = req.body.pass;
+  User.findOne({ 'uname': uname }, 'uname pass salt', function (err, user) 
+  {
+    console.log(JSON.stringify(user));
+    if (err)
+    {
+      res.status(404).json(err);
+      return;
+    }
+    if(user)
+    {
+      userobj = new User()
+      userobj.uname = user.uname;
+      userobj.pass = user.pass;
+      userobj.salt = user.salt;
+      if (userobj.validPassword(newpass))
+      {
+        token = user.generateJwt();
+        res.status(200);
+        res.json({"token" : token});
+      }
+      else
+      {
+        console.log('Get lost');
+        res.status(401).json({"message": "Incorrect username or password"});
+      }
+    }
+    else
+    {
+      console.log('You prick');
+      res.status(401).json({"message": "Incorrect username or password"});
+    }
+  });
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addPost">addPost</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#profileRead">profileRead</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#searchByQuery">searchByQuery</a></li><li><a href="global.html#sendJSONresponse">sendJSONresponse</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Nov 27 2019 02:15:04 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

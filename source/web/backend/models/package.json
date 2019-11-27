@@ -1,0 +1,15 @@
+{
+  "name": "models",
+  "version": "1.0.0",
+  "description": "",
+  "main": "post.js,user.js",
+  "scripts": {
+    "doc": "jsdoc -c jsdoc.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jsdoc": "^3.6.3"
+  }
+}

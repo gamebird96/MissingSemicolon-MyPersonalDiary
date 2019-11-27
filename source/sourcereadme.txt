@@ -1,0 +1,1 @@
+It is a web app. The process includes Registration, login, creating, editing, deleting posts, etc.

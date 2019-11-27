@@ -1,0 +1,104 @@
+<head>
+        <title>Register</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      </head>
+
+
+      <body style="background-image: url('./assets/images/login/background.jpg');">
+
+        <nav class="navbar navbar-inverse  navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" style="color: white; font-style:italic; font-family:fantasy; font-size: 18px;">My Diary</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li ><a routerLink= "/home"  style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">Home</a></li>
+              <li><a routerLink= "/login"  style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">Login</a></li>
+              <li class="active"><a routerLink= "/register" style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">Register</a></li>
+              <li><a routerLink= "/profile" style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">My Profile</a></li>
+            </ul>
+          </div>
+        </nav>
+
+          <!-- Nav-Bar Ends-->
+
+
+          <div class="jumbotron jumbotron-fluid" style ="background-color: rgba(42, 42, 82, 0.432); border-radius: 10px; box-shadow: 0 0 30px red;">
+                <div class="container" style ="background-color:rgb(96, 161, 235) ; border-radius: 15px; box-shadow: 0 0 30px yellow;">
+                  <h1>Welcome</h1>
+                  <p>Please Login to continue!</p>
+                </div>
+              </div>
+
+              <!-- ---------------Heading Ends------------------ -->
+
+
+
+        <div class = "login_container">
+
+                <mat-card class="example-card" style = "background-color: rgba(255, 255, 255, 0.952);;">
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>Register</mat-card-title>
+                          <mat-card-subtitle>Enter Details</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-actions>
+                            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)" ngNativeValidate>
+
+                              <div>
+
+                                <mat-form-field class="example-full-width">
+
+                                  <input matInput placeholder="userId" value="USER-ID" id="userId" type="text" formControlName="userId">
+                                </mat-form-field>
+                              </div>
+                              <div>
+
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="password" value="Password" id="password" type="password" formControlName="password">
+                                </mat-form-field>
+
+                            </div>
+                            <div>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="confpassword" value="Confirm Password" id="confpassword" type="password" formControlName="confpassword">
+                                </mat-form-field>
+                            </div>
+
+                            <div>
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="phonenum" value="Phone Number" id="phonenum" type="tel" formControlName="phonenum" pattern="^[1-9][0-9]{9}$" required>
+                            </mat-form-field>
+
+                            </div>
+
+
+                            <div>
+                                <mat-form-field>
+                                    <mat-label>Gender</mat-label>
+                                    <mat-select name="gender"  (selectionChange)="onSelect($event.value)">
+                                        <mat-option *ngFor="let gender of genders" [value]="gender.value" >
+                                                {{gender.viewValue}}
+
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+
+
+                              <button class="button" type="submit" mat-raised-button color="primary">Register</button>
+
+                            </form>
+                          </mat-card-actions>
+                        </mat-card>
+
+
+        </div>
+
+
+          </body>

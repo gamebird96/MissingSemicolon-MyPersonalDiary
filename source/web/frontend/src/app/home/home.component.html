@@ -1,0 +1,175 @@
+<head>
+  <title>My Diary</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
+</head>
+
+
+<body>
+  
+  <nav class="navbar navbar-inverse  navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" style="color: white; font-style:italic; font-family:fantasy; font-size: 18px;">My Diary</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a routerLink= "/home" style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">Home</a></li>
+          <li><a routerLink= "/login" style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">Login</a></li>
+          <li><a routerLink= "/register" style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">Register</a></li>
+          <li><a routerLink= "/profile" style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">My Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+  
+<div class="container">
+     
+    <form class="form-inline md-form form-sm active-cyan-2">
+        <input class="form-control form-control-sm mr-3 w-75" size="100%" type="text" [(ngModel)]="searchText" [ngModelOptions]="{standalone:true}" placeholder="Search" aria-label="Search"
+          >
+          <button mat-stroked-button color="primary" (click)="searchTitle()">Search Post</button>
+       
+      </form>
+      
+</div>
+
+<p></p>
+<mat-divider></mat-divider>
+Top Search Results:
+<p></p>
+<mat-divider></mat-divider>
+
+<div style="margin-left: 10%; font-size: 18px;">
+
+<ul>
+  <li *ngFor="let res of results; let i = index">
+    
+    <a href={{res.link}}>{{res.title}}</a>
+      By: {{res.uname}}
+    <mat-divider></mat-divider>
+  </li>
+  
+</ul>
+
+</div>
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="page-footer font-small stylish-color-dark pt-4">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+  
+      <!-- Grid row -->
+      <div class="row">
+  
+        <!-- Grid column -->
+        <div class="col-md-4 mx-auto">
+  
+          <!-- Content -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">About Us</h5>
+          <p>This is done as part of the course project for Software Lab CS 699</p>
+          <p>Indian Institute of Technology, Mumbai.</p>
+        
+        </div>
+
+        <!-- Grid column -->
+        <div class="col-md-4 mx-auto">
+  
+  
+            <p>Team Members:</p>
+            <p>Samrat Dutta : 193050026</p>
+            <p>Soumyadeep Thakur : 193050033</p>
+            <p>Aakash Banerjee : 193050034</p>
+          
+          </div>
+        
+  
+        
+       
+        
+  
+      </div>
+      <!-- Grid row -->
+  
+    </div>
+    <!-- Footer Links -->
+  
+
+  
+    <hr>
+  
+    <!-- Social buttons -->
+    <ul class="list-unstyled list-inline text-center">
+      <li  class="list-inline-item">
+        <a href="https://www.facebook.com" class="btn-floating btn-fb mx-1">
+          <i class="fab fa-facebook-f"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://twitter.com" class="btn-floating btn-tw mx-1">
+          <i class="fab fa-twitter"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://www.google.co.in" class="btn-floating btn-gplus mx-1">
+          <i class="fab fa-google-plus-g"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://in.linkedin.com" class="btn-floating btn-li mx-1">
+          <i class="fab fa-linkedin-in"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-dribbble mx-1">
+          <i class="fab fa-dribbble"> </i>
+        </a>
+      </li>
+    </ul>
+    <!-- Social buttons -->
+  
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->

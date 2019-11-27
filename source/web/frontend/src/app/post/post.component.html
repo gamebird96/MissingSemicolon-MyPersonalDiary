@@ -1,0 +1,41 @@
+<head>
+        <title>Profile</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      </head>
+
+
+      <body>
+        <div>
+        <nav class="navbar navbar-inverse  navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" style="color: white; font-style:italic; font-family:fantasy; font-size: 18px;">My Diary</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li ><a routerLink= "/home"  style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">Home</a></li>
+                <li><a routerLink= "/login"  style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">Login</a></li>
+                <li class="active"><a routerLink= "/register" style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">Register</a></li>
+                <li><a routerLink= "/profile" style="color:crimson; font-style:italic; font-family:fantasy; font-size: 18px;">My Profile</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+          <!-- Nav-Bar Ends-->
+
+
+
+          <img class="bg-image" src={{imgpath}}>
+
+          <div class="bg-text">
+            <h1>{{title}}</h1>
+            <small>{{timeStamp}}</small><p><p></p>
+            <img class="disp" src={{imgpath}} width="25%" height="25%" style="margin-left: 20%;">
+            <div [innerHTML]="post"></div>
+            <button type="button" routerLink= "/profile" class="btn btn-success" >Go Back</button>
+          </div>
+
+          </body>

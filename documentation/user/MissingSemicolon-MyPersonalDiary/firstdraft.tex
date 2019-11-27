@@ -1,0 +1,99 @@
+
+\documentclass[runningheads]{llncs}
+\usepackage{graphicx}
+\usepackage{listings}
+%
+\begin{document}
+% title
+\title{My Personal Diary}
+%\thanks{Supported by Mult x.} % if we want to thank someone/org.
+%
+% authors
+\author{MissingSemicolon
+,\\\\Samrat Dutta(193050026),\\
+Soumyadeep Thakur(193050033), \\
+Aakash Banerjee (193050034)}
+\date{November 27th}
+%
+\authorrunning{ CS 699 : MissingSemicolon}
+% First names are abbreviated in the running head.
+%
+\institute{{Indian Institute Of Technology, Bombay}}
+
+
+%
+
+\maketitle              % typeset the header of the contribution
+%
+
+
+
+%
+%
+\section{Introduction}
+
+    In this project we have implemented an online Personal Diary. Any user will be able to store and upload his or her diary content along with an image. He or She will be able to access the content from anywhere in the world. It is easy to use and anyone will be able to maneuver through the app smoothly and easily. 
+    \\
+    In modern days it is not possible to carry thick diaries everywhere, they are messy, occupies space. Generally people would refrain from carrying them. Digital diaries on the other hand resides on the web, hence they can fit in any smart device. They are handy and are easy to use. Also they can provide such features which are otherwise not possible in classical diaries, such as storing images, editing, deleting, or even sharing posts. 
+    \\
+    The project uses the most popularly used technologies such as the Angular 7 framework at the front-end, and node\.js at the backend to handle requests to the server and process client data. For database management, MongoDB has been used. Mongoose has been used for application data object modelling, which acts as a smooth interface between node\.js and mongoDB.
+
+\section{Motivation}
+
+    A \textbf{Diary} acts as a memory sink for all kinds of memories good or bad. One can get more organised by jotting down their thoughts and can revisit their fond memories whenever they want. As time is advancing, people are getting busy more and more, day by day. Almost everyone has forgotten the art of diary writing. \\
+    It can not only be used as a diary, but also an online note taking system. One can simply write up any reminders. Users will be able to upload an image.  This is where our web application comes handy. Anyone can use this app on the go. Any registered user will be able to create, make his or her Diary Post Public or Private depending on their choice. An user can also edit his or her post later. 
+    \\
+    One can share their creativity through their posts. Anyone would be able to view their thoughts if made public. Private posts are for personal use, which is available for personal use only.
+    \\
+    Any user will first have to register in the portal. The registration details are hashed and salted and are stored in the database. Following this the user has to login. The user is then provided with a screen where he or she can add posts, or view the previously added posts. User can choose to keep their post discreet or make them public. He/She can also delete or edit their posts. User can add image to each corresponding posts.\\
+    This is the functionality as of now what this web-app provides.
+    
+
+\section{User Documentation}
+
+To download the project:
+\begin{lstlisting}
+$ git clone https://github.com/gamebird96/MissingSemicolon-MyPersonalDiary.git
+\end{lstlisting}
+\noindent
+Enter the home directory of the project execute:
+
+\begin{lstlisting}
+$ cd MyPersonalDiary 
+\end{lstlisting}
+\noindent
+To run the Node.JS back-end go to the home directory and perform the following:
+\begin{lstlisting}
+$ cd backend
+$ npm install
+$ node server.js
+\end{lstlisting}
+\noindent
+
+The last command here starts the backend server.\\
+To run the front-end Angular.JS application go to the home directory and perform the following:
+\begin{lstlisting}
+$ cd frontend
+$ npm install
+$ sudo ng serve
+\end{lstlisting}
+\\
+The \textit{npm install} command will take care of all the dependencies and will install them.\\
+It is assumed that the user has MongoDB installed in the system. The backend and frontend must be running on two different terminals simultaneously. \\
+The server by default will run at http://localhost:3000\\
+The backend server has been statically associated with the port - 3000
+The client by default will run at http://localhost:4200\\
+The client server can run on any other port also.
+
+\section{Project Insight And Future Work}
+As mentioned in the previous section the app can be used by any end-user to store their personal notes, or write down their memories, or even share with other users their digital diary contents. The user information is stored securely. Cryptographic methods such as hashing and salting are applied while storing the password. We tried to implement the homepage in such a fashion so that, we could process the publicly stored post and extract keywords from them. This would allow an user to search through the posts for some particular or related search tags and the nearest matching tags will be showed in order. We were able to extract keywords using TFIDF from a blogpost dataset, but were unable to incorporate it in this project.
+\\
+
+This project can be easily hosted and deployed on the web so that anyone can access them. Anyone with a internet connection would be able to log in to their space. We need two server to run simultaneously. One for the client side frontend server, which would handle requests from the clients and another for the server side, which would perform the main processing of the client data. The application server gets user data from the client. It also sends those data to the server for processing. The server, after processing them sends the data back to the application server which in turn sends back the result to the user.
+\\
+Thus there are many possibilities in upgrading the current version, to a much flexible one. This can thus be used to serve multiple purpose and used as per benefit of an user.
+
+\bibliography{bibliography/first}
+\bibliographystyle{splncs04}
+
+\end{document}
